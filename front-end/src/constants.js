@@ -11,4 +11,8 @@ export default {
       BID: 'bid',
     },
   },
+  PASSENGER: {
+    ADULT: 'Adult',
+    CHILD: 'Child',
+  },
 };

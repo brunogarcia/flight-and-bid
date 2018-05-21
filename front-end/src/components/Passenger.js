@@ -1,12 +1,25 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Avatar from '@material-ui/core/Avatar';
+import PersonIcon from '@material-ui/icons/Person';
+import ChilIcon from '@material-ui/icons/ChildCare';
 import Types from '../utils/types';
+import constants from '../constants';
+
+const { ADULT } = constants.PASSENGER;
 
 const Passenger = (props) => {
-  const { passenger } = props;
+  const { firstName, lastName, type } = props.passenger;
+  const name = `${firstName} ${lastName}`;
+
   return (
-    <Fragment>
-      <p>{passenger.firstName}</p>
-    </Fragment>
+    <ListItem>
+      <Avatar>
+        {type === ADULT ? <PersonIcon /> : <ChilIcon />}
+      </Avatar>
+      <ListItemText primary={name} secondary={type} />
+    </ListItem>
   );
 };
 

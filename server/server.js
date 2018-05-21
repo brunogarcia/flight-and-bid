@@ -6,10 +6,10 @@ const port = 5000;
 
 app.use(cors());
 
-const booking = JSON.parse(fs.readFileSync('data/booking.json', 'utf8'));
+const bid = JSON.parse(fs.readFileSync('data/bid.json', 'utf8'));
 
-app.get('/api/booking', (req, res) => {
-    res.send(JSON.stringify(booking));
+app.get('/api/bid', (req, res) => {
+    res.send(JSON.stringify(bid));
 });
 
 app.listen(port, () => {

@@ -5,4 +5,10 @@ export default {
       SELECTION: '/selection',
     },
   },
+  API: {
+    HOST: 'http://localhost:5000/api',
+    PATH: {
+      BID: 'bid',
+    },
+  },
 };

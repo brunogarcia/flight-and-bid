@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import api from '../api/';
 import Error from '../components/Error';
 import Loading from '../components/Loading';
+import Booking from '../components/Booking';
 
 class Home extends Component {
   constructor(props) {
@@ -9,7 +10,8 @@ class Home extends Component {
     this.state = {
       loading: true,
       error: false,
-      bids: {},
+      booking: {},
+      meals: {},
     };
   }
 
@@ -28,7 +30,8 @@ class Home extends Component {
         if (this.isAlreadyMounted) {
           this.setState({
             loading: false,
-            bids: Object.assign({}, data),
+            booking: Object.assign({}, data.booking),
+            meals: data.options.slice(),
           });
         }
       }).catch(() => {
@@ -41,7 +44,12 @@ class Home extends Component {
   }
 
   render() {
-    const { error, loading, bids } = this.state;
+    const {
+      error,
+      loading,
+      booking,
+      meals,
+    } = this.state;
 
     if (error) {
       return <Error />;
@@ -49,9 +57,7 @@ class Home extends Component {
       return <Loading />;
     }
 
-    console.log(bids);
-
-    return 'hi';
+    return <Booking booking={booking} meals={meals} />;
   }
 }
 

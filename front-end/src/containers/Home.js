@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import api from '../api/';
 import Error from '../components/Error';
 import Loading from '../components/Loading';
-import Booking from '../components/Booking';
+import Bids from '../components/Bids';
 
 class Home extends Component {
   constructor(props) {
@@ -57,7 +57,7 @@ class Home extends Component {
       return <Loading />;
     }
 
-    return <Booking booking={booking} meals={meals} />;
+    return <Bids booking={booking} meals={meals} />;
   }
 }
 

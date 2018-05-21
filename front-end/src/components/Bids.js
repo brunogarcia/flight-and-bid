@@ -4,7 +4,7 @@ import Types from '../utils/types';
 import PassengerList from '../components/PassengerList';
 import BidList from '../components/BidList';
 
-const Booking = (props) => {
+const Bids = (props) => {
   const { booking, meals } = props;
 
   return (
@@ -15,7 +15,7 @@ const Booking = (props) => {
   );
 };
 
-Booking.propTypes = {
+Bids.propTypes = {
   booking: PropTypes.shape({
     passengers: PropTypes.arrayOf(Types.passenger).isRequired,
     journeys: PropTypes.arrayOf(Types.journey).isRequired,
@@ -23,4 +23,4 @@ Booking.propTypes = {
   meals: PropTypes.arrayOf(Types.meal).isRequired,
 };
 
-export default Booking;
+export default Bids;

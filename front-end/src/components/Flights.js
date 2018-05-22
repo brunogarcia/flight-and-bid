@@ -6,6 +6,10 @@ import PropTypes from 'prop-types';
 import Types from '../utils/types';
 import Bid from '../components/Bid';
 
+const renderBids = (journeys, meals) =>
+  journeys.map((journey, idx) =>
+    <Bid idx={idx} key={journey.key} journey={journey} meals={meals} />);
+
 const Flights = (props) => {
   const { journeys, meals } = props;
   return (
@@ -16,12 +20,12 @@ const Flights = (props) => {
       </Typography>
 
       <Typography variant="subheading" component="p">
-        Please select one meal for each flight and then propose a proper bid.
+        Here you can select one meal for each flight and then propose a proper bid.
         <br />
         Good luck!
       </Typography>
 
-      {journeys.map(journey => <Bid key={journey.key} journey={journey} meals={meals} />)}
+      {renderBids(journeys, meals)}
 
       <Button variant="raised" size="large" color="primary">
         Send &nbsp; <SendIcon />

@@ -2,16 +2,16 @@
   margin: 2em 0;
 }
 
-.Bid-flights {
-  text-align: center;
+.Bid-message {
+  padding-bottom: 2em;
 }
 
-.Bid-flight {
-  display: inline-block;
-  margin-bottom: 1em;
+.Bid-action {
+  margin-top: 1em;
+  padding-top: 1em;
+  border-top: solid 2px #eee;
 }
 
-.Bid-flight-icon {
-  vertical-align: top;
-  padding: 1em 2em;
+.Bid-action li {
+  padding-left: 0;
 }

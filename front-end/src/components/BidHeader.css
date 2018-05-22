@@ -1,0 +1,23 @@
+.BidHeader-flights {
+  text-align: center;
+}
+
+.BidHeader-flight {
+  margin-bottom: 1em;
+}
+
+.BidHeader-flight-icon {
+  vertical-align: top;
+  transform: rotate(90deg);
+}
+
+
+@media only screen and (min-width: 420px) {
+  .BidHeader-flight {
+    display: inline-block;
+  }
+
+  .BidHeader-flight-icon {
+    padding: 1em 2em;
+  }
+}

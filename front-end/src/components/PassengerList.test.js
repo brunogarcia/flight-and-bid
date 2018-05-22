@@ -37,5 +37,4 @@ describe('PassengerList component', () => {
     const wrapper = shallow(<PassengerList passengers={passengers} />);
     expect(wrapper.find(Passenger).length).toBeGreaterThanOrEqual(passengers.length);
   });
-  
 });

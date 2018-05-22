@@ -95,11 +95,11 @@ class Flights extends Component {
 
   renderCallToAction() {
     return (
-      <div className='Flights-action'>
+      <div className="Flights-action">
         <Button
-          size='large'
-          color='primary'
-          variant='raised'
+          size="large"
+          color="primary"
+          variant="raised"
           onClick={this.handleSendForm}
           disabled={!this.isProcessComplete()}
         >
@@ -114,11 +114,11 @@ class Flights extends Component {
     return (
       <Fragment>
 
-        <Typography variant='title' gutterBottom>
+        <Typography variant="title" gutterBottom>
           Flights
         </Typography>
 
-        <Typography variant='subheading' component='p'>
+        <Typography variant="subheading" component="p">
           Here you can select one meal for each flight and then propose a proper bid.
           <br />
           Good luck! &#x1F91E;

@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import Card from '@material-ui/core/Card';
 import Avatar from '@material-ui/core/Avatar';
 import GavelIcon from '@material-ui/icons/Gavel';
-import NumericInput from 'react-numeric-input';
-import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import Types from '../utils/types';
+import NumericInput from 'react-numeric-input';
 import BidHeader from './BidHeader';
 import BidMeals from './BidMeals';
+import Types from '../utils/types';
 import './Bid.css';
 
 const MAX_SIZE_BID_INPUT = 3;
@@ -120,9 +120,7 @@ class Bid extends Component {
       <Card className="Bid-main">
         <CardContent>
           <BidHeader data={journey} />
-    
           <BidMeals idx={idx} data={meals} onSelectMeal={this.handleSelectMeal} />
-  
           {this.renderNumericInput()}
         </CardContent>
       </Card>

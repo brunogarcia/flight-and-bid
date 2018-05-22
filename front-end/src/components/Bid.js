@@ -82,6 +82,8 @@ class Bid extends Component {
       const { min, max } = mealSelected[0].priceRange;
       const textPrimary = `You have selected meal ${mealId}`;
       const textSecondary = `The bid must be between ${min}€ and ${max}€`;
+      const adviceMessage = `Advice: with a ${min}€ bid you really do not have too many chances to win.`;
+      const advice = this.state.amount <= min ? adviceMessage : '';
 
       return (
         <div className="Bid-action" >
@@ -100,6 +102,10 @@ class Bid extends Component {
             size={MAX_SIZE_BID_INPUT}
             onChange={this.handleChangeAmount}
           />
+
+          <p className="Bid-advice">
+            <small>{advice}</small>
+          </p>
         </div>
       );
     }

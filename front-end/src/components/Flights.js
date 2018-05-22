@@ -1,11 +1,11 @@
 import React, { Fragment, Component } from 'react';
 import { withRouter } from 'react-router';
+import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
-import PropTypes from 'prop-types';
-import Types from '../utils/types';
 import Bid from './Bid';
+import Types from '../utils/types';
 import constants from '../constants';
 import './Flights.css';
 

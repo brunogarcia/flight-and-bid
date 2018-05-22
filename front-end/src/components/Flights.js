@@ -1,11 +1,16 @@
 import React, { Fragment, Component } from 'react';
+import { withRouter } from 'react-router';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
 import PropTypes from 'prop-types';
 import Types from '../utils/types';
 import Bid from './Bid';
+import constants from '../constants';
 import './Flights.css';
+
+const { PATH } = constants.APP;
+
 
 class Flights extends Component {
   constructor(props) {
@@ -15,6 +20,28 @@ class Flights extends Component {
     };
 
     this.handleFinishProcess = this.handleFinishProcess.bind(this);
+    this.handleSendForm = this.handleSendForm.bind(this);
+  }
+
+  createData() {
+    const { journeys } = this.state;
+    const values = Object.values(journeys);
+
+    return values.map(value => ({
+      journeyKey: value.journeyKey,
+      amount: value.amount,
+      currency: value.currency,
+      mealId: value.mealId,
+    }));
+  }
+
+  handleSendForm() {
+    const data = this.createData();
+
+    this.props.history.push({
+      pathname: PATH.SELECTION,
+      state: { selection: data },
+    });
   }
 
   handleFinishProcess(data) {
@@ -68,11 +95,12 @@ class Flights extends Component {
 
   renderCallToAction() {
     return (
-      <div className="Flights-action">
+      <div className='Flights-action'>
         <Button
-          size="large"
-          color="primary"
-          variant="raised"
+          size='large'
+          color='primary'
+          variant='raised'
+          onClick={this.handleSendForm}
           disabled={!this.isProcessComplete()}
         >
           Save &nbsp; <SaveIcon />
@@ -86,11 +114,11 @@ class Flights extends Component {
     return (
       <Fragment>
 
-        <Typography variant="title" gutterBottom>
+        <Typography variant='title' gutterBottom>
           Flights
         </Typography>
 
-        <Typography variant="subheading" component="p">
+        <Typography variant='subheading' component='p'>
           Here you can select one meal for each flight and then propose a proper bid.
           <br />
           Good luck! &#x1F91E;
@@ -107,7 +135,10 @@ class Flights extends Component {
 Flights.propTypes = {
   journeys: PropTypes.arrayOf(Types.journey).isRequired,
   meals: PropTypes.arrayOf(Types.meal).isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 
-export default Flights;
+export default withRouter(Flights);

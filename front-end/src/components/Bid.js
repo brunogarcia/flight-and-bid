@@ -79,9 +79,9 @@ class Bid extends Component {
 
     if (mealId) {
       const mealSelected = this.props.meals.filter(meal => meal.mealId === mealId);
-      const { min, max } = mealSelected[0].priceRange;
+      const { min, max, jump } = mealSelected[0].priceRange;
       const textPrimary = `You have selected meal ${mealId}`;
-      const textSecondary = `The bid must be between ${min}€ and ${max}€`;
+      const textSecondary = `The bid must be between ${min}€ and ${max}€. Also, each step is ${jump}€`;
       const adviceMessage = `Advice: with a ${min}€ bid you really do not have too many chances to win.`;
       const advice = this.state.amount <= min ? adviceMessage : '';
 
@@ -100,6 +100,7 @@ class Bid extends Component {
             value={this.state.amount}
             style={numericInputStyle}
             size={MAX_SIZE_BID_INPUT}
+            step={jump}
             onChange={this.handleChangeAmount}
           />
 

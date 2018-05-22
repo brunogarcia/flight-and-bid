@@ -1,38 +1,108 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, Component } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import SendIcon from '@material-ui/icons/Send';
+import SaveIcon from '@material-ui/icons/Save';
 import PropTypes from 'prop-types';
 import Types from '../utils/types';
-import Bid from '../components/Bid';
+import Bid from './Bid';
+import './Flights.css';
 
-const renderBids = (journeys, meals) =>
-  journeys.map((journey, idx) =>
-    <Bid idx={idx} key={journey.key} journey={journey} meals={meals} />);
+class Flights extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      journeys: {},
+    };
 
-const Flights = (props) => {
-  const { journeys, meals } = props;
-  return (
-    <Fragment>
+    this.handleFinishProcess = this.handleFinishProcess.bind(this);
+  }
 
-      <Typography variant="title" gutterBottom>
-        Flights
-      </Typography>
+  handleFinishProcess(data) {
+    const journey = {
+      [`journey${data.idx}`]: {
+        journeyKey: data.journeyKey,
+        mealId: data.mealId,
+        amount: data.amount,
+        min: data.min,
+        max: data.max,
+        currency: data.currency,
+      },
+    };
 
-      <Typography variant="subheading" component="p">
-        Here you can select one meal for each flight and then propose a proper bid.
-        <br />
-        Good luck!
-      </Typography>
+    this.setState(prevState => ({
+      journeys: Object.assign(prevState.journeys, journey),
+    }));
+  }
 
-      {renderBids(journeys, meals)}
+  isProcessComplete() {
+    const journeys = Object.values(this.state.journeys);
+    const count = journeys.filter((journey) => {
+      const {
+        mealId,
+        amount,
+        min,
+        max,
+      } = journey;
 
-      <Button variant="raised" size="large" color="primary">
-        Send &nbsp; <SendIcon />
-      </Button>
-    </Fragment>
-  );
-};
+      return mealId !== '' &&
+             amount >= min &&
+             amount <= max;
+    });
+
+    return count.length === this.props.journeys.length;
+  }
+
+  renderBids(journeys, meals) {
+    return journeys.map((journey, idx) => {
+      return (
+        <Bid
+          idx={idx}
+          key={journey.key}
+          meals={meals}
+          journey={journey}
+          onFinishProcess={this.handleFinishProcess}
+        />
+      );
+    });
+  }
+
+  renderCallToAction() {
+    return (
+      <div className="Flights-action">
+        <Button
+          size="large"
+          color="primary"
+          variant="raised"
+          disabled={!this.isProcessComplete()}
+        >
+          Save &nbsp; <SaveIcon />
+        </Button>
+      </div>
+    );
+  }
+
+  render() {
+    const { journeys, meals } = this.props;
+    return (
+      <Fragment>
+
+        <Typography variant="title" gutterBottom>
+          Flights
+        </Typography>
+
+        <Typography variant="subheading" component="p">
+          Here you can select one meal for each flight and then propose a proper bid.
+          <br />
+          Good luck! &#x1F91E;
+        </Typography>
+
+        {this.renderBids(journeys, meals)}
+
+        {this.renderCallToAction()}
+      </Fragment>
+    );
+  }
+}
 
 Flights.propTypes = {
   journeys: PropTypes.arrayOf(Types.journey).isRequired,

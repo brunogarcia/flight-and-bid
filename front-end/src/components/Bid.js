@@ -35,14 +35,42 @@ class Bid extends Component {
     super(props);
     this.state = {
       mealId: '',
+      amount: 0,
     };
 
+    this.handleChangeAmount = this.handleChangeAmount.bind(this);
     this.handleSelectMeal = this.handleSelectMeal.bind(this);
+    this.handleSendData = this.handleSendData.bind(this);
   }
 
   handleSelectMeal(mealId) {
-    this.setState({
-      mealId,
+    this.setState(
+      { mealId },
+      () => this.handleSendData(),
+    );
+  }
+
+  handleChangeAmount(amount) {
+    this.setState(
+      { amount },
+      () => this.handleSendData(),
+    );
+  }
+
+  handleSendData() {
+    const { mealId } = this.state;
+    const mealSelected = this.props.meals.filter(meal => meal.mealId === mealId);
+    const { currency, priceRange } = mealSelected[0];
+    const { min, max } = priceRange;
+
+    this.props.onFinishProcess({
+      idx: this.props.idx,
+      journeyKey: this.props.journey.key,
+      mealId: this.state.mealId,
+      amount: this.state.amount,
+      min,
+      max,
+      currency,
     });
   }
 
@@ -67,9 +95,10 @@ class Bid extends Component {
           <NumericInput
             min={min}
             max={max}
-            value={0}
+            value={this.state.amount}
             style={numericInputStyle}
             size={MAX_SIZE_BID_INPUT}
+            onChange={this.handleChangeAmount}
           />
         </div>
       );
@@ -99,6 +128,7 @@ Bid.propTypes = {
   idx: PropTypes.number.isRequired,
   journey: Types.journey.isRequired,
   meals: PropTypes.arrayOf(Types.meal).isRequired,
+  onFinishProcess: PropTypes.func.isRequired,
 };
 
 

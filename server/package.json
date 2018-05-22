@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "Leonard Koch",
+  "author": "Bruno Garcia",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.1",

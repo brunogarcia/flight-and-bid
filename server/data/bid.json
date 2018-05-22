@@ -75,7 +75,7 @@
     },
     {
       "mealId": "ML04",
-      "desc": "Breackfast: Yogurt, Juice or Cooffe, Bread and Cookies",
+      "desc": "Breakfast: Yogurt, Juice or Cooffe, Bread and Cookies",
       "priceRange": {
         "min": 0,
         "max": 20,

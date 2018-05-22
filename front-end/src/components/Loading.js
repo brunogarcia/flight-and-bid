@@ -1,9 +1,23 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { withStyles } from '@material-ui/core/styles';
+import './Loading.css';
 
-const Loading = () => (
-  <Fragment>
-      Loading...
-  </Fragment>
-);
+const styles = theme => ({
+  progress: {
+    margin: theme.spacing.unit * 2,
+  },
+});
 
-export default Loading;
+const Loading = () => {
+  const message = 'Loading...';
+
+  return (
+    <div className="Loading-main">
+      <CircularProgress size={50} />
+      <p>{message}</p>
+    </div>
+  );
+};
+
+export default withStyles(styles)(Loading);

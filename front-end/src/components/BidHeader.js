@@ -4,15 +4,13 @@ import PlaneIcon from '@material-ui/icons/Flight';
 import Types from '../utils/types';
 import './BidHeader.css';
 
-const BidHeader = (props) => {
-  const { data } = props;
-
+const BidHeader = ({ journey }) => {
   const {
     departure,
     arrival,
     departureDate,
     arrivalDate,
-  } = data;
+  } = journey;
 
   const hourFormat = {
     hour: 'numeric',
@@ -65,7 +63,7 @@ const BidHeader = (props) => {
 };
 
 BidHeader.propTypes = {
-  data: Types.journey.isRequired,
+  journey: Types.journey.isRequired,
 };
 
 

@@ -26,9 +26,9 @@ class BidMeals extends Component {
   }
 
   renderFormControlLabels() {
-    const { data } = this.props;
+    const { meals } = this.props;
 
-    return data.map((meal) => {
+    return meals.map((meal) => {
       const { mealId, desc } = meal;
       return <FormControlLabel key={mealId} value={mealId} control={<Radio />} label={desc} />;
     });
@@ -55,7 +55,7 @@ class BidMeals extends Component {
 
 BidMeals.propTypes = {
   idx: PropTypes.number.isRequired,
-  data: PropTypes.arrayOf(Types.meal).isRequired,
+  meals: PropTypes.arrayOf(Types.meal).isRequired,
   onSelectMeal: PropTypes.func.isRequired,
 };
 

@@ -41,18 +41,18 @@ class BidForm extends Component {
   }
 
   renderAdvice(min) {
+    let message = 'Good bid!';
     const isAmountLowerThanMinimun = (this.state.amount <= min);
 
     if (isAmountLowerThanMinimun) {
-      const message = `Advice: with a ${min}€ bid you really do not have too many chances to win.`;
-      return (
-        <p className="Bid-advice">
-          <small>{message}</small>
-        </p>
-      );
+      message = `Advice: with a ${min}€ bid you really do not have too many chances to win.`;
     }
 
-    return null;
+    return (
+      <p className="Bid-advice">
+        <small>{message}</small>
+      </p>
+    );
   }
 
   render() {
